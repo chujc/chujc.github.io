@@ -12,6 +12,8 @@
     class="g-banner post-header {{ site.postPatterns | prepend: 'post-pattern-' }} {{ site.theme-color | prepend: 'bgcolor-' }} {% unless page.cover %}post-no-cover{% endunless %}"
     data-theme="{{ site.theme-color }}"
   >
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
     <div class="post-wrapper">
       <div class="post-tags">
         {% if page.tags.size > 0 %}
@@ -103,6 +105,11 @@
         <div id="disqus_thread"></div>
     </section>
     {% endif %}
+    {% if site.comments.gitalk %}
+    <section class="post-footer-item comment">
+      <div id="gitalk-container"></div>
+    </section>
+    {% endif %}
   </section>
 
   {% include footer.html %}
@@ -138,6 +145,19 @@
       s.src = '{{ site.comments.disqus_url }}';
       s.setAttribute('data-timestamp', +new Date());
       (d.head || d.body).appendChild(s);
+
+      var gitalk = new Gitalk({
+        clientID: '3783d444c6695eaa6b12',
+        clientSecret: 'ae8dc04f43200c603590bd53431f9534b6edf418',
+        repo: 'chujc',
+        owner: '朝夕',
+        admin: ['chujc'],
+        id: location.pathname,      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
     })();
   </script>
   {% endif %}
