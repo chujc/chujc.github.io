@@ -149,11 +149,11 @@
       var gitalk = new Gitalk({
         clientID: '3783d444c6695eaa6b12',
         clientSecret: 'ae8dc04f43200c603590bd53431f9534b6edf418',
-        repo: 'chujc',
+        repo: 'chujc.github.io',
         owner: '朝夕',
         admin: ['chujc'],
         id: location.pathname,      // Ensure uniqueness and length less than 50
-        distractionFreeMode: false  // Facebook-like distraction free mode
+        distractionFreeMode: true  // Facebook-like distraction free mode
       })
 
       gitalk.render('gitalk-container')
